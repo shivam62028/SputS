@@ -1,0 +1,12 @@
+# Author: richyrik
+apiVersion: v1
+kind: Service
+metadata:
+  name: sputs-api-svc
+spec:
+  type: ClusterIP
+  selector:
+    app: sputs-api
+  ports:
+    - port: 80
+      targetPort: 8000

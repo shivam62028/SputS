@@ -1,0 +1,24 @@
+# Author: richyrik
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sputs-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: sputs-api
+  template:
+    metadata:
+      labels:
+        app: sputs-api
+    spec:
+      containers:
+        - name: sputs-api
+          image: sputs-api:latest
+          ports:
+            - containerPort: 8000
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "512Mi"

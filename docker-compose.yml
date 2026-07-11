@@ -1,0 +1,20 @@
+# Author: richyrik
+services:
+  sputs-api:
+    build: ./backend
+    ports: ["8000:8000"]
+    environment:
+      DATABASE_URL: postgresql+asyncpg://sputs:pass@postgres:5432/sputs_db
+      REDIS_URL: redis://redis:6379/0
+      LOCK_TTL_SECONDS: 300
+    depends_on: [postgres, redis]
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: sputs
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: sputs_db
+    ports: ["5432:5432"]
+  redis:
+    image: redis:7-alpine
+    ports: ["6379:6379"]

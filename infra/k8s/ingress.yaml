@@ -1,0 +1,17 @@
+# Author: richyrik
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sputs-ingress
+spec:
+  rules:
+    - host: api.sputs.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: sputs-api-svc
+                port:
+                  number: 80
